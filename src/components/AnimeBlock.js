@@ -4,10 +4,14 @@ import { useSpring, animated } from 'react-spring';
 const AnimeBlock = () => {
   const [state, toggle] = useState(true)
   const { x } = useSpring({ from: { x: 0 }, x: state ? 1 : 0, config: { duration: 1000 } });
+  const fadein = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+  })
 
   return (
     <div onClick={() => toggle(!state)}>
-      <animated.div
+      <animated.h1
         style={{
           opacity: x.interpolate({ range: [0, 1], output: [0.3, 1] }),
           transform: x
@@ -17,8 +21,9 @@ const AnimeBlock = () => {
             })
             .interpolate(x => `scale(${x})`)
         }}>
-        Hello React Spring
-      </animated.div>
+        Hello World!
+      </animated.h1>
+      <animated.h3 style={fadein}>This is Peter</animated.h3>
     </div>
   );
 }
